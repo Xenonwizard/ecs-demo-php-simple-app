@@ -6,7 +6,7 @@ phases:
       - docker build -t resp1 .
       - docker run -d -p 80:80 resp1 
   
-  post-build:
+  post_build:
     commands:
       - docker tag resp1:latest 710781057441.dkr.ecr.ap-southeast-1.amazonaws.com/resp1:latest
       - docker push 710781057441.dkr.ecr.ap-southeast-1.amazonaws.com/resp1:latest
