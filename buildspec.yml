@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 710781057441.dkr.ecr.ap-southeast-1.amazonaws.com
+      - docker build -t resp1 .
+      - docker run -d -p 80:80 resp1 
+  
+  post-build:
+    commands:
+      - docker tag resp1:latest 710781057441.dkr.ecr.ap-southeast-1.amazonaws.com/resp1:latest
+      - docker push 710781057441.dkr.ecr.ap-southeast-1.amazonaws.com/resp1:latest
